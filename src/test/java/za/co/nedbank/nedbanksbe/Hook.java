@@ -25,9 +25,9 @@ public class Hook {
 
             System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
             ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments("--headless");
+//            chromeOptions.addArguments("--headless");
             chromeOptions.addArguments("start-maximized");
-            chromeOptions.addArguments("disable-gpu");
+//            chromeOptions.addArguments("disable-gpu");
             chromeOptions.addArguments("--disable-extensions");
             base.driver = new ChromeDriver(chromeOptions);
             base.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
