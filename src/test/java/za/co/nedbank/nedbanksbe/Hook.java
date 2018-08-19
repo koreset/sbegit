@@ -20,18 +20,21 @@ public class Hook {
     @Before
     public void InitializeTest() {
 
-        System.out.println("Opening the browser: NedbankSBE");
+        if (System.getProperty("enable.driver", "true").equals("true")) {
+            System.out.println("Opening the browser: NedbankSBE");
 
-        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
-        chromeOptions.addArguments("start-maximized");
-        chromeOptions.addArguments("disable-gpu");
-        chromeOptions.addArguments("--disable-extensions");
-        base.driver = new ChromeDriver(chromeOptions);
-        base.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        base.driver.get(System.getProperty("test.url", "https://10.58.34.128:8443/SBE"));
+            System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.addArguments("--headless");
+            chromeOptions.addArguments("start-maximized");
+            chromeOptions.addArguments("disable-gpu");
+            chromeOptions.addArguments("--disable-extensions");
+            base.driver = new ChromeDriver(chromeOptions);
+            base.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            base.driver.get(System.getProperty("test.url", "https://localhost:4200"));
 //        base.driver.manage().window().maximize();
+
+        }
 
     }
 
@@ -39,16 +42,17 @@ public class Hook {
     public void TearDownTest(Scenario scenario) {
 
         System.out.println("Teardown: " + scenario.getName());
+        if (System.getProperty("enable.driver", "true").equals("true")) {
+            if (scenario.isFailed()) {
 
-        if (scenario.isFailed()) {
+                //Take screenshot
+                scenario.embed(((TakesScreenshot) base.driver).getScreenshotAs(OutputType.BYTES), "image/png");
+                System.out.println(scenario.getName());
 
-            //Take screenshot
-            scenario.embed(((TakesScreenshot) base.driver).getScreenshotAs(OutputType.BYTES), "image/png");
-            System.out.println(scenario.getName());
+            }
 
+            base.driver.close();
         }
-
-        base.driver.close();
     }
 
 }
