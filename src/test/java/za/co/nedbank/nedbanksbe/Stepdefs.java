@@ -15,12 +15,12 @@ public class Stepdefs extends BaseDef {
         this.base = base;
     }
 
-//    @When("^User selects BUSINESS BUNDLE One option$")
-//    public void user_selects_BUSINESS_BUNDLE_One_option() throws Exception {
-//        Actions action = new Actions(base.driver);
-//        action.moveToElement(base.driver.findElement(By.xpath("//div[@class='col-sm-12']/h3[text()='BUSINESS BUNDLE 1']"))).build().perform();
-////        base.driver.findElement(By.xpath("//div[contains(@class,'row')]//div[3]//div[1]//div[1]//div[5]//div[1]//div[1]//button[text()='Select']")).click();
-//    }
+    @When("^User selects BUSINESS BUNDLE One option$")
+    public void user_selects_BUSINESS_BUNDLE_One_option() throws Exception {
+        Actions action = new Actions(base.driver);
+        action.moveToElement(base.driver.findElement(By.xpath("//div[@class='col-sm-12']/h3[text()='BUSINESS BUNDLE 1']"))).build().perform();
+//        base.driver.findElement(By.xpath("//div[contains(@class,'row')]//div[3]//div[1]//div[1]//div[5]//div[1]//div[1]//button[text()='Select']")).click();
+    }
 
 
     @Given("^I go to a dummy url$")
