@@ -6,6 +6,7 @@ import cucumber.api.java.Before;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +23,12 @@ public class Hook {
         System.out.println("Opening the browser: NedbankSBE");
 
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-        base.driver = new ChromeDriver();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("start-maximized");
+        chromeOptions.addArguments("disable-gpu");
+        chromeOptions.addArguments("--disable-extensions");
+        base.driver = new ChromeDriver(chromeOptions);
         base.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         base.driver.get(System.getProperty("test.url", "https://10.58.34.128:8443/SBE"));
 //        base.driver.manage().window().maximize();
