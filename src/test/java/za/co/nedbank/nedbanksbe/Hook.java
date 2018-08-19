@@ -25,7 +25,7 @@ public class Hook {
         base.driver = new ChromeDriver();
         base.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         base.driver.get(System.getProperty("test.url", "https://10.58.34.128:8443/SBE"));
-        base.driver.manage().window().maximize();
+//        base.driver.manage().window().maximize();
 
     }
 
