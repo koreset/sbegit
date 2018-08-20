@@ -20,6 +20,8 @@ public class Stepdefs extends BaseDef {
         Actions action = new Actions(base.driver);
         action.moveToElement(base.driver.findElement(By.xpath("//div[@class='col-sm-12']/h3[text()='BUSINESS BUNDLE 1']"))).build().perform();
 //        base.driver.findElement(By.xpath("//div[contains(@class,'row')]//div[3]//div[1]//div[1]//div[5]//div[1]//div[1]//button[text()='Select']")).click();
+        base.driver.findElement(By.xpath("//div[1][@class='col-sm-12 col-md-6 pa2 mb2 product ng-star-inserted']/div/div/div/div[@class='col-md-6']/a[text()='Select']")).click();
+
     }
 
 
